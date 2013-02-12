@@ -1,7 +1,7 @@
 json-transform
 ==============
 
-The parse transform json-transfom lets you write Json structures directly in your Erlang code, and it will be translated into Erlang terms in accordance with EEP-18.
+The parse transform json_parser lets you write Json structures directly in your Erlang code, and it will be translated into Erlang terms in accordance with EEP-18.
 
 For now it only handles one of the suggested formats in EEP-18, one could possibly implement options to the transform to get other translations.
 
