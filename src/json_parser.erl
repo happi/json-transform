@@ -1,13 +1,7 @@
 -module(json_parser).
 -export([parse_transform/2]).
 
--define(JSON(Json), {match, _, {bin, _, [{bin_element
-                                          , _
-                                          , {string, _, "json"}
-                                          , _
-                                          , _}]}, Json}).
-
-parse_transform(AST, _Options) -> json(AST, []),
+parse_transform(AST, _Options) -> json(AST, []).
 
 -define(FUNCTION(Clauses), {function, Label, Name, Arity, Clauses}).
 
@@ -21,6 +15,13 @@ json([], Res) -> lists:reverse(Res).
 json_clauses([{clause, CLine, A1, A2, Code} | Clauses]) ->
     [{clause, CLine, A1, A2, json_code(Code)} | json_clauses(Clauses)];
 json_clauses([]) -> [].
+
+
+-define(JSON(Json), {match, _, {bin, _, [{bin_element
+                                          , _
+                                          , {string, _, "json"}
+                                          , _
+                                          , _}]}, Json}).
 
 %% We look for: <<"json">> = Json-Term
 json_code([])                     -> [];
