@@ -26,7 +26,7 @@ json_clauses([]) -> [].
 %% We look for: <<"json">> = Json-Term
 json_code([])                     -> [];
 json_code([?JSON(Json)|MoreCode]) -> [parse_json(Json) | json_code(MoreCode)];
-json_code(Code)                   -> io:format("~p~n", [Code]).
+json_code(Code)                   -> Code.
 
 %% Json Object -> [{}] | [{Lable, Term}]
 parse_json({tuple,Line,[]})            -> {cons, Line, {tuple, Line, []}};
