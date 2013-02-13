@@ -17,16 +17,16 @@ json_clauses([{clause, CLine, A1, A2, Code} | Clauses]) ->
 json_clauses([]) -> [].
 
 
--define(JSON(Json), {match, _, {bin, _, [{bin_element
+-define(JSON(Json), {bin, _, [{bin_element
                                           , _
-                                          , {string, _, "json"}
+                                          , {tuple, _, [Json]}
                                           , _
-                                          , _}]}, Json}).
+                                          , _}]}).
 
 %% We look for: <<"json">> = Json-Term
 json_code([])                     -> [];
 json_code([?JSON(Json)|MoreCode]) -> [parse_json(Json) | json_code(MoreCode)];
-json_code(Code)                   -> Code.
+json_code(Code)                   -> io:format("~p~n", [Code]).
 
 %% Json Object -> [{}] | [{Lable, Term}]
 parse_json({tuple,Line,[]})            -> {cons, Line, {tuple, Line, []}};
