@@ -37,8 +37,9 @@ is translated into
   foo() ->
     [{<<"foo">>, 42}].
 
-Due to the precedence rules ":" and "-" operators in Erlang there is a small
-inconvenience, you have to put negative numbers in objects within parentheses.
+Due to the precedence rules of the ":" and "-" operators in Erlang
+there is a small inconvenience, you have to put negative numbers in
+objects within parentheses.
 
 i.e.
     <<{ { "foo" : (-42) } }>>.
